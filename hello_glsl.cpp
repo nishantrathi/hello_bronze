@@ -163,9 +163,9 @@ public:
   }
    
   void initLights( ){
-    glm::vec3 color0(1.0, 0.0, 0.0);
+    glm::vec3 color0(255.0, 255.0, 255.0);
     glm::vec3 position0(0.0, 5.0, 10.0);
-    glm::vec3 color1(0.0, 0.0, 1.0);
+    glm::vec3 color1(255.0, 255.0, 255.0);
     glm::vec3 position1(0.0, 5.0, -10.0);
     light0 = SpinningLight(color0, position0, centerPosition);
     light1 = SpinningLight(color1, position1, centerPosition);
@@ -219,8 +219,8 @@ public:
     initLights( );
     
     // Load shader program A
-    const char* vertexShaderSource_A = "blinn_phong.vert.glsl";
-    const char* fragmentShaderSource_A = "blinn_phong.frag.glsl";
+    const char* vertexShaderSource_A = "bronze.vert.glsl";
+    const char* fragmentShaderSource_A = "bronze.frag.glsl";
     FragmentShader fragmentShader_A(fragmentShaderSource_A);
     VertexShader vertexShader_A(vertexShaderSource_A);
     shaderProgram_A.attach(vertexShader_A);

@@ -33,8 +33,11 @@ public:
   SpinningLight(glm::vec3& color, glm::vec3& position, glm::vec3& center) :
     _rotationDelta(0.05), _color(color), _position(position), _center(center), _savedColor(color), _isOn(true){
       glm::vec3 random_vector = glm::sphericalRand(1.0);
+      printf("random_vector %f %f %f\n",random_vector[0],random_vector[1],random_vector[2]);
       glm::vec3 d = direction( );
+      printf("d %f %f %f\n",d[0],d[1],d[2]);
       _tangent = glm::cross(d, random_vector);
+      printf("_tangent %f %f %f\n",_tangent[0],_tangent[1],_tangent[2]);
     }
 
   glm::vec4 color( ){return glm::vec4(_color, 1.0);}
@@ -61,7 +64,9 @@ public:
   }
 
   void rotateLeft( ){
+    printf("inside left method\n");
     glm::vec3 f = glm::normalize(direction( ));
+    printf("f %f %f %f\n",f[0],f[1],f[2]);
     glm::vec3 _up = glm::normalize(_tangent);
     glm::vec3 s = glm::normalize(glm::cross(f, _up));
     glm::vec3 u = glm::cross(s, f);
@@ -163,9 +168,9 @@ public:
   }
    
   void initLights( ){
-    glm::vec3 color0(255.0, 255.0, 255.0);
+    glm::vec3 color0(1.0,1.0, 1.0);
     glm::vec3 position0(0.0, 5.0, 10.0);
-    glm::vec3 color1(255.0, 255.0, 255.0);
+    glm::vec3 color1(1.0, 1.0, 1.0);
     glm::vec3 position1(0.0, 5.0, -10.0);
     light0 = SpinningLight(color0, position0, centerPosition);
     light1 = SpinningLight(color1, position1, centerPosition);
@@ -323,6 +328,7 @@ public:
     }else if(isKeyPressed('A')){
       light0.rotateLeft( );
     }else if(isKeyPressed('D')){
+      printf("pressed D \n");
       light0.rotateLeft( );
     }else if(isKeyPressed('X')){
       light0.roll( );
@@ -331,6 +337,7 @@ public:
     }else if(isKeyPressed('H')){
       light1.rotateUp( );
     }else if(isKeyPressed('G')){
+      printf("pressed G \n");
       light1.rotateLeft( );
     }else if(isKeyPressed('J')){
       light1.rotateLeft( );
